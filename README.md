@@ -16,7 +16,7 @@ I'm a **web designer** with a strong foundation in digital user interface design
 
 ### 🛠️ Skills & Tools
 
-- **Design:** Figma, Adobe XD, Photoshop, Illustrator, InDesign
+- **Design:** Figma, Adobe XD, Photoshop, Illustrator
 - **Branding & Identity:** Logo Design, Brand Guidelines, Visual Storytelling
 - **Web:** HTML, CSS, JavaScript (learning!), Responsive Design
 - **Web3:** Exploring DApps, smart contracts, and blockchain-based UI concepts
