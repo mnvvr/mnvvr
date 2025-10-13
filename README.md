@@ -31,7 +31,7 @@ I'm a **web designer** with a strong foundation in digital user interface design
 I'm always looking to collaborate on exciting projects or chat about design, UI/UX, and emerging web technologies.
 
 - [X (Twitter)](https://x.com/xoxmunevver)
-- [Dribbble](https://dribbble.com/munevver)
+- [https://munevver.netlify.app/)
 - [LinkedIn](https://www.linkedin.com/in/munevveraslan/)
 
 ---
