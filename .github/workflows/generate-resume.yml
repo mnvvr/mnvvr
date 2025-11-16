@@ -6,7 +6,6 @@ on:
     paths:
       - 'resume.html'
       - 'style.css'
-      - 'readme.css'
       - '.github/workflows/generate-resume.yml'
 
 jobs:
@@ -24,19 +23,26 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # Setup Node.js for Playwright (faster than installing Chromium via apt-get)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Install Playwright with Chromium (bundled, no separate download needed)
+      - name: Install Playwright
+        run: |
+          npm install -D playwright
+          npx playwright install chromium --with-deps
+
       # Install Pandoc for HTML to Markdown conversion
       - name: Install Pandoc
         run: |
-          sudo apt-get update
+          sudo apt-get update -qq
           sudo apt-get install -y pandoc
 
-      # Install Chromium for PDF generation with print CSS support
-      - name: Install Chromium
-        run: |
-          sudo apt-get install -y chromium-browser
-
-      # Generate PDF using Chromium headless with commit hash in filename
-      # Chromium respects print-specific CSS and paged media better than Weasyprint for HTML
+      # Generate PDF using Playwright with commit hash in filename
+      # Playwright's bundled Chromium respects print CSS and renders faster
       - name: Generate PDF from HTML
         run: |
           # Remove old versioned PDFs from git (not just filesystem)
@@ -45,13 +51,34 @@ jobs:
 
           COMMIT_HASH=$(git rev-parse --short=7 HEAD)
           PDF_NAME="Munevver_Aslan_Resume_${COMMIT_HASH}.pdf"
-          chromium-browser --headless --disable-gpu \
-            --print-to-pdf="${PDF_NAME}" \
-            --no-pdf-header-footer \
-            --print-to-pdf-no-header \
-            resume.html
+
+          # Create Node.js script to generate PDF with Playwright
+          cat > generate-pdf.js << 'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+
+          (async () => {
+            const browser = await chromium.launch();
+            const page = await browser.newPage();
+            await page.goto('file://' + process.cwd() + '/resume.html', { waitUntil: 'networkidle' });
+            await page.pdf({
+              path: process.argv[2],
+              format: 'A4',
+              printBackground: true,
+              margin: { top: '0.35in', right: '0.35in', bottom: '0.35in', left: '0.35in' }
+            });
+            await browser.close();
+          })();
+          EOF
+
+          # Run the PDF generation
+          node generate-pdf.js "${PDF_NAME}"
+
           # Create symlink for latest version
           ln -sf "${PDF_NAME}" Munevver_Aslan_Resume.pdf
+
+          # Clean up the temporary script
+          rm generate-pdf.js
 
       # Generate clean markdown README from HTML using Pandoc
       # GitHub-flavored markdown renders beautifully without custom CSS
