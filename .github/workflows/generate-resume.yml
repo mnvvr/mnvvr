@@ -118,10 +118,11 @@ jobs:
                   elif class_name == 'skill-items':
                       self.capture_text = True
                       self.current_section = 'skill_items'
-                  elif class_name == 'experience-item' and self.exp_count == 0:
-                      self.in_first_exp = True
+                  elif class_name == 'experience-item':
+                      if self.exp_count == 0:
+                          self.in_first_exp = True
                       self.exp_count += 1
-                  elif self.in_first_exp:
+                  elif self.in_first_exp and self.exp_count == 1:
                       if class_name == 'job-title':
                           self.capture_text = True
                           self.current_section = 'job_title'
@@ -139,8 +140,11 @@ jobs:
                           self.current_section = 'description'
 
               def handle_endtag(self, tag):
-                  if tag == 'div' and self.in_first_exp and 'experience-item' in str(tag):
-                      self.in_first_exp = False
+                  if tag == 'div':
+                      attrs_str = str(tag)
+                      if self.in_first_exp and self.exp_count == 1:
+                          # Stop capturing after first experience item closes
+                          self.in_first_exp = False
                   self.capture_text = False
 
               def handle_data(self, data):
