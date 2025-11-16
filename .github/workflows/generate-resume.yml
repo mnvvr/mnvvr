@@ -6,6 +6,7 @@ on:
     paths:
       - 'resume.html'
       - 'style.css'
+      - 'readme.css'
       - '.github/workflows/generate-resume.yml'
 
 jobs:
@@ -48,8 +49,8 @@ jobs:
           # Create symlink for latest version
           ln -sf "${PDF_NAME}" Munevver_Aslan_Resume.pdf
 
-      # Generate styled README.md with embedded HTML resume
-      # GitHub supports HTML in markdown, preserving visual styling
+      # Generate styled README.md with embedded HTML resume using readme.css
+      # GitHub sanitizes style tags, so we use minimal inline styles
       - name: Generate styled README from HTML
         run: |
           cat > README.md << 'README_EOF'
@@ -67,18 +68,9 @@ jobs:
 
           README_EOF
 
-          # Extract the body content and embed with style tag
+          # Extract body content and apply minimal inline styles
           sed -n '/<body>/,/<\/body>/p' resume.html | \
-          sed '1d;$d' | \
-          sed 's|<link rel="stylesheet" href="style.css">||' >> README.md
-
-          # Prepend inline styles from style.css
-          echo "<style>" > temp_readme.md
-          cat style.css >> temp_readme.md
-          echo "</style>" >> temp_readme.md
-          echo "" >> temp_readme.md
-          cat README.md >> temp_readme.md
-          mv temp_readme.md README.md
+          sed '1d;$d' >> README.md
 
       # Configure Git for automated commits
       - name: Configure Git
