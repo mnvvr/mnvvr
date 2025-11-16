@@ -34,13 +34,12 @@ jobs:
         run: |
           sudo apt-get install -y chromium-browser
 
-      # Generate PDF using Chromium headless with date and commit hash in filename
+      # Generate PDF using Chromium headless with commit hash in filename
       # Chromium respects print-specific CSS and paged media better than Weasyprint for HTML
       - name: Generate PDF from HTML
         run: |
-          DATE=$(date +%Y%m%d)
           COMMIT_HASH=$(git rev-parse --short=7 HEAD)
-          PDF_NAME="Munevver_Aslan_Resume_${DATE}_${COMMIT_HASH}.pdf"
+          PDF_NAME="Munevver_Aslan_Resume_${COMMIT_HASH}.pdf"
           chromium-browser --headless --disable-gpu \
             --print-to-pdf="${PDF_NAME}" \
             --no-pdf-header-footer \
