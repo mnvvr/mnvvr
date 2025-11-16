@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ personal.title }} specializing in UI/UX">
+    <meta name="author" content="{{ personal.firstName }} {{ personal.lastName }}">
     <title>{{ personal.firstName }} {{ personal.lastName }} - Resume</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <main>
+        <article class="resume-content">
         <header class="header">
             <h1 class="name">{{ personal.firstName }} <span class="last-name">{{ personal.lastName }}</span></h1>
             <div class="title">{{ personal.title }}</div>
@@ -20,7 +22,7 @@
                 <span>|</span>
                 <a href="https://linkedin.com/in/{{ personal.linkedin }}" target="_blank">{{ personal.linkedin }}</a>
             </div>
-            <div class="quote">"{{ personal.quote }}"</div>
+            <p class="quote">"{{ personal.quote }}"</p>
         </header>
 
         <section class="section">
@@ -48,11 +50,11 @@
             <div class="experience-item">
                 <div class="job-header">
                     <div>
-                        <div class="job-title">{{ job.title }}</div>
-                        <div class="company-name">{{ job.company }}</div>
-                        <div class="job-location">{{ job.location }}</div>
+                        <h3 class="job-title">{{ job.title }}</h3>
+                        <p class="company-name">{{ job.company }}</p>
+                        <p class="job-location">{{ job.location }}</p>
                     </div>
-                    <div class="job-date">{{ job.date }}</div>
+                    <time class="job-date" datetime="{{ job.date }}">{{ job.date }}</time>
                 </div>
                 <ul class="job-description">
                     {% for bullet in job.bullets %}
@@ -70,16 +72,17 @@
             <div class="education-item">
                 <div class="education-header">
                     <div>
-                        <div class="school-name">{{ edu.school }}</div>
-                        <div class="degree">{{ edu.degree }}</div>
-                        <div class="education-location">{{ edu.location }}</div>
+                        <h3 class="school-name">{{ edu.school }}</h3>
+                        <p class="degree">{{ edu.degree }}</p>
+                        <p class="education-location">{{ edu.location }}</p>
                     </div>
-                    <div class="education-date">{{ edu.date }}</div>
+                    <time class="education-date" datetime="{{ edu.date }}">{{ edu.date }}</time>
                 </div>
             </div>
 
             {% endfor %}
         </section>
-    </div>
+        </article>
+    </main>
 </body>
 </html>

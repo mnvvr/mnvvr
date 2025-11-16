@@ -13,7 +13,7 @@ body {
     background: #fff;
 }
 
-.container {
+.resume-content {
     max-width: 850px;
     margin: 0 auto;
     padding: 35px 45px;
@@ -81,6 +81,7 @@ body {
     font-size: 11px;
     margin-top: 6px;
     font-weight: 300;
+    margin-bottom: 0;
 }
 
 .section {
@@ -147,6 +148,7 @@ body {
     color: #333;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    margin-bottom: 2px;
 }
 
 .job-date {
@@ -163,6 +165,7 @@ body {
     font-weight: 700;
     color: #e91e63;
     margin-bottom: 1px;
+    margin-top: 0;
 }
 
 .job-location {
@@ -170,6 +173,7 @@ body {
     color: #666;
     font-style: normal;
     margin-bottom: 6px;
+    margin-top: 0;
     font-weight: 300;
 }
 
@@ -204,6 +208,7 @@ body {
     font-weight: 700;
     color: #333;
     margin-bottom: 2px;
+    margin-top: 0;
 }
 
 .degree {
@@ -212,6 +217,7 @@ body {
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.2px;
+    margin: 0;
 }
 
 .education-date {
@@ -227,6 +233,7 @@ body {
     color: #666;
     font-style: normal;
     font-weight: 300;
+    margin: 0;
 }
 
 @media print {
@@ -234,7 +241,7 @@ body {
         margin: 0;
         padding: 0;
     }
-    .container {
+    .resume-content {
         padding: 28px 40px;
     }
     .experience-item {
