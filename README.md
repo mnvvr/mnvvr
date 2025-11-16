@@ -2,7 +2,7 @@
 
 **Digital Product Designer** | Lisbon, Portugal
 
-📄 [Download Resume (PDF)](./Munevver_Aslan_Resume_b6da00e.pdf) | 💼 [LinkedIn](https://linkedin.com/in/munevveraslan) | 🌐 [Portfolio](https://munevver.netlify.app) | ✉️ [Email](mailto:munevveraslan2@gmail.com)
+📄 [Download Resume (PDF)](./Munevver_Aslan_Resume_2d081f2.pdf) | 💼 [LinkedIn](https://linkedin.com/in/munevveraslan) | 🌐 [Portfolio](https://munevver.netlify.app) | ✉️ [Email](mailto:munevveraslan2@gmail.com)
 
 ---
 
@@ -26,4 +26,4 @@ Product Designer with Industrial Design background, specializing in UI/UX for di
 
 ---
 
-📄 **[View Full Resume (PDF)](./Munevver_Aslan_Resume_b6da00e.pdf)**
+📄 **[View Full Resume (PDF)](./Munevver_Aslan_Resume_2d081f2.pdf)**
