@@ -34,15 +34,20 @@ jobs:
         run: |
           sudo apt-get install -y chromium-browser
 
-      # Generate PDF using Chromium headless
+      # Generate PDF using Chromium headless with date and commit hash in filename
       # Chromium respects print-specific CSS and paged media better than Weasyprint for HTML
       - name: Generate PDF from HTML
         run: |
+          DATE=$(date +%Y%m%d)
+          COMMIT_HASH=$(git rev-parse --short=7 HEAD)
+          PDF_NAME="Munevver_Aslan_Resume_${DATE}_${COMMIT_HASH}.pdf"
           chromium-browser --headless --disable-gpu \
-            --print-to-pdf=Munevver_Aslan_Resume.pdf \
+            --print-to-pdf="${PDF_NAME}" \
             --no-pdf-header-footer \
             --print-to-pdf-no-header \
             resume.html
+          # Create symlink for latest version
+          ln -sf "${PDF_NAME}" Munevver_Aslan_Resume.pdf
 
       # Generate styled README.md with embedded HTML resume
       # GitHub supports HTML in markdown, preserving visual styling
@@ -86,7 +91,7 @@ jobs:
       - name: Check for changes
         id: check_changes
         run: |
-          git add Munevver_Aslan_Resume.pdf README.md
+          git add Munevver_Aslan_Resume_*.pdf Munevver_Aslan_Resume.pdf README.md
           if git diff --cached --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
