@@ -13,15 +13,15 @@
         <article class="resume-content">
         <header class="header">
             <h1 class="name">{{ personal.firstName }} <span class="last-name">{{ personal.lastName }}</span></h1>
-            <div class="title">{{ personal.title }}</div>
-            <div class="location">{{ personal.location }}</div>
-            <div class="contact-info">
+            <p class="title">{{ personal.title }}</p>
+            <p class="location">{{ personal.location }}</p>
+            <address class="contact-info">
                 <a href="mailto:{{ personal.email }}">{{ personal.email }}</a>
                 <span>|</span>
-                <a href="{{ personal.portfolio }}" target="_blank">{{ personal.portfolio.replace('https://', '') }}</a>
+                <a href="{{ personal.portfolio }}" target="_blank" rel="me">{{ personal.portfolio.replace('https://', '') }}</a>
                 <span>|</span>
-                <a href="https://linkedin.com/in/{{ personal.linkedin }}" target="_blank">{{ personal.linkedin }}</a>
-            </div>
+                <a href="https://linkedin.com/in/{{ personal.linkedin }}" target="_blank" rel="me">{{ personal.linkedin }}</a>
+            </address>
             <p class="quote">"{{ personal.quote }}"</p>
         </header>
 

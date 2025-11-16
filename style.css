@@ -40,7 +40,7 @@ body {
 }
 
 .title {
-    font-size: 11px;
+    font-size: 13px;
     color: #e91e63;
     font-weight: 600;
     text-transform: uppercase;
@@ -50,7 +50,7 @@ body {
 
 .location {
     color: #666;
-    font-size: 11px;
+    font-size: 13px;
     margin-bottom: 5px;
     font-style: normal;
     font-weight: 300;
@@ -62,8 +62,9 @@ body {
     gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 8px;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 400;
+    font-style: normal;
 }
 
 .contact-info a {
@@ -78,7 +79,7 @@ body {
 .quote {
     font-style: italic;
     color: #666;
-    font-size: 11px;
+    font-size: 13px;
     margin-top: 6px;
     font-weight: 300;
     margin-bottom: 0;
@@ -105,7 +106,7 @@ body {
 }
 
 .summary-text {
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.65;
     color: #333;
     text-align: justify;
@@ -116,7 +117,7 @@ body {
     display: grid;
     grid-template-columns: 135px 1fr;
     gap: 6px 18px;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .skill-category {
@@ -137,12 +138,12 @@ body {
 
 .position-summary {
     margin-bottom: 5px;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.6;
 }
 
 .position-title {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: #333;
     text-transform: uppercase;
@@ -150,19 +151,19 @@ body {
 }
 
 .employer-name {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: #e91e63;
 }
 
 .work-location {
-    font-size: 10px;
+    font-size: 13px;
     color: #666;
     font-weight: 300;
 }
 
 .work-period {
-    font-size: 10px;
+    font-size: 13px;
     color: #e91e63;
     font-style: italic;
     font-weight: 400;
@@ -175,7 +176,7 @@ body {
 
 .job-description li {
     margin-bottom: 4px;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.55;
     color: #333;
     font-weight: 400;
@@ -189,18 +190,18 @@ body {
 }
 
 .school-summary {
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.6;
 }
 
 .school-title {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: #333;
 }
 
 .program-name {
-    font-size: 11px;
+    font-size: 13px;
     color: #333;
     font-weight: 400;
     text-transform: uppercase;
@@ -208,13 +209,13 @@ body {
 }
 
 .campus-location {
-    font-size: 10px;
+    font-size: 13px;
     color: #666;
     font-weight: 300;
 }
 
 .study-period {
-    font-size: 10px;
+    font-size: 13px;
     color: #e91e63;
     font-style: italic;
     font-weight: 400;
