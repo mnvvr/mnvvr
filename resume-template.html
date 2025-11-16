@@ -35,7 +35,7 @@
             <div class="skills-grid">
                 {% for skill in skills %}
                 <div class="skill-category">{{ skill.category }}</div>
-                <div class="skill-items">{{ skill.items }}</div>
+                <div class="skill-items">{{ skill['items'] }}</div>
 
                 {% endfor %}
             </div>
