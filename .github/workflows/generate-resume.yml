@@ -1,0 +1,75 @@
+name: Generate Resume Artifacts
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'resume.html'
+      - 'style.css'
+      - '.github/workflows/generate-resume.yml'
+
+jobs:
+  generate-artifacts:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      # Checkout the repository with full history
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Install Pandoc for HTML to Markdown conversion
+      - name: Install Pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
+      # Install Chromium for PDF generation with print CSS support
+      - name: Install Chromium
+        run: |
+          sudo apt-get install -y chromium-browser
+
+      # Generate PDF using Chromium headless
+      # Chromium respects print-specific CSS and paged media better than Weasyprint for HTML
+      - name: Generate PDF from HTML
+        run: |
+          chromium-browser --headless --disable-gpu \
+            --print-to-pdf=Munevver_Aslan_Resume.pdf \
+            --no-pdf-header-footer \
+            --print-to-pdf-no-header \
+            resume.html
+
+      # Generate Markdown from HTML for GitHub README
+      # This keeps README.md in sync with resume.html content
+      - name: Generate Markdown from HTML
+        run: |
+          pandoc resume.html -f html -t gfm -o README.md
+
+      # Configure Git for automated commits
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # Check if there are changes to commit (prevents infinite loops)
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git add Munevver_Aslan_Resume.pdf README.md
+          if git diff --cached --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      # Commit and push artifacts only if they were modified
+      - name: Commit and push artifacts
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git commit -m "Auto-generate resume artifacts from resume.html"
+          git push
