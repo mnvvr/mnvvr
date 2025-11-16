@@ -60,11 +60,11 @@ jobs:
           template = Template(template_content)
           html_output = template.render(**data)
 
-          # Write generated HTML
-          with open('resume.html', 'w', encoding='utf-8') as f:
+          # Write generated HTML as index.html (serves dual purpose: PDF source + GitHub Pages)
+          with open('index.html', 'w', encoding='utf-8') as f:
               f.write(html_output)
 
-          print("✓ Generated resume.html from template and data")
+          print("✓ Generated index.html from template and data")
           PYSCRIPT
 
       # Generate PDF using Playwright with commit hash in filename
@@ -86,7 +86,7 @@ jobs:
           (async () => {
             const browser = await chromium.launch();
             const page = await browser.newPage();
-            await page.goto('file://' + process.cwd() + '/resume.html', { waitUntil: 'networkidle' });
+            await page.goto('file://' + process.cwd() + '/index.html', { waitUntil: 'networkidle' });
             await page.pdf({
               path: process.argv[2],
               format: 'A4',
@@ -180,7 +180,7 @@ jobs:
       - name: Check for changes
         id: check_changes
         run: |
-          git add resume.html Munevver_Aslan_Resume_*.pdf README.md
+          git add index.html Munevver_Aslan_Resume_*.pdf README.md
           if git diff --cached --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
