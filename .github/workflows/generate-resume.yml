@@ -68,12 +68,8 @@ jobs:
 
           README_HEADER
 
-          # Convert HTML body to clean markdown using Pandoc
-          pandoc resume.html -f html -t gfm --wrap=none | \
-          # Remove the duplicate header section that's in the HTML
-          sed '/^#.*Münevver.*Aslan/,/^---$/d' | \
-          # Clean up empty lines
-          sed '/^$/N;/^\n$/D' >> README.md
+          # Convert HTML to markdown, stripping all div/span classes but keeping content
+          pandoc resume.html -f html -t gfm --wrap=none >> README.md
 
       # Configure Git for automated commits
       - name: Configure Git
