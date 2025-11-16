@@ -74,8 +74,8 @@ jobs:
           # Run the PDF generation
           node generate-pdf.js "${PDF_NAME}"
 
-          # Copy to create stable filename (not symlink, so GitHub serves it correctly)
-          cp "${PDF_NAME}" Munevver_Aslan_Resume.pdf
+          # Export PDF name for use in subsequent steps
+          echo "PDF_NAME=${PDF_NAME}" >> $GITHUB_ENV
 
           # Clean up the temporary script
           rm generate-pdf.js
@@ -84,13 +84,13 @@ jobs:
       # GitHub-flavored markdown renders beautifully without custom CSS
       - name: Generate clean markdown README from HTML
         run: |
-          # Create header section with links
-          cat > README.md << 'README_HEADER'
+          # Create header section with links to versioned PDF
+          cat > README.md << README_HEADER
           # Münevver Aslan
 
           **Digital Product Designer** | Lisbon, Portugal
 
-          📄 [Download Resume (PDF)](./Munevver_Aslan_Resume.pdf) | 💼 [LinkedIn](https://linkedin.com/in/munevveraslan) | 🌐 [Portfolio](https://munevver.netlify.app) | ✉️ [Email](mailto:munevveraslan2@gmail.com)
+          📄 [Download Resume (PDF)](./${PDF_NAME}) | 💼 [LinkedIn](https://linkedin.com/in/munevveraslan) | 🌐 [Portfolio](https://munevver.netlify.app) | ✉️ [Email](mailto:munevveraslan2@gmail.com)
 
           ---
 
@@ -109,7 +109,7 @@ jobs:
       - name: Check for changes
         id: check_changes
         run: |
-          git add Munevver_Aslan_Resume_*.pdf Munevver_Aslan_Resume.pdf README.md
+          git add Munevver_Aslan_Resume_*.pdf README.md
           if git diff --cached --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
