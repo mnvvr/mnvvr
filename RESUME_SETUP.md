@@ -1,29 +1,63 @@
 # Resume Setup & Maintenance
 
-This repository contains Münevver Aslan's professional resume in multiple formats, all generated from a single source of truth.
+This repository contains Münevver Aslan's professional resume in multiple formats, all **automatically generated from a single source of truth**.
 
 ## 📁 File Structure
 
 ```
 .
-├── resume-data.json          # Single source of truth - all professional data
-├── resume.html               # HTML resume (generated from resume-data.json)
-├── style.css                 # Resume styling
-├── Munevver_Aslan_Resume.pdf # PDF resume (generated from HTML)
-└── README.md                 # GitHub profile (uses data from resume-data.json)
+├── resume-data.json          # 🎯 SINGLE SOURCE OF TRUTH - Edit this file only!
+├── generate.py               # 🤖 Generator script - runs automatically
+├── style.css                 # 🎨 Resume styling (edit if needed)
+│
+├── resume.html               # ✨ Auto-generated from resume-data.json
+├── README.md                 # ✨ Auto-generated from resume-data.json
+└── Munevver_Aslan_Resume.pdf # ✨ Auto-generated from resume.html
 ```
+
+## 🚀 Quick Start - Update Your Resume
+
+**To update your resume, follow these 3 simple steps:**
+
+1. **Edit** `resume-data.json` with your new information
+2. **Run** `python3 generate.py`
+3. **Push** to GitHub
+
+```bash
+# Example workflow
+vim resume-data.json          # Edit your resume data
+python3 generate.py           # Generate all files automatically
+git add .
+git commit -m "Update resume"
+git push
+```
+
+That's it! Everything else is automated.
 
 ## 🔄 How It Works
 
-1. **resume-data.json** - Contains all professional information (experience, skills, education, etc.)
-2. **resume.html** - HTML resume that displays the data with proper formatting
-3. **style.css** - All styling separated from HTML for maintainability
-4. **Munevver_Aslan_Resume.pdf** - Generated from HTML using Chrome headless
-5. **README.md** - GitHub profile that references the same data
+The `generate.py` script reads `resume-data.json` and automatically generates:
 
-## 🛠️ Generating PDF from HTML
+1. **resume.html** - Full HTML resume with all your experience
+2. **README.md** - GitHub profile with highlighted current work
+3. **Munevver_Aslan_Resume.pdf** - Print-ready PDF using Chrome headless
 
-To regenerate the PDF after making changes to the HTML or CSS:
+**Single source of truth:** You only edit `resume-data.json` - everything else is generated from it.
+
+## 📝 What You Can Edit
+
+### Primary Source (Edit This!)
+- **resume-data.json** - All your professional information
+
+### Styling (Optional)
+- **style.css** - Visual styling, fonts, colors, spacing
+
+### Generator (Advanced)
+- **generate.py** - Logic for how HTML/README are generated
+
+## 🛠️ Manual PDF Generation (Optional)
+
+The script automatically generates PDF, but if you need to do it manually:
 
 ```bash
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
@@ -65,19 +99,25 @@ google-chrome --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="Mu
 
 ## ✏️ Making Updates
 
-### Update Professional Information:
+### Standard Workflow (Recommended):
 
-1. **Edit resume-data.json** - Update your data (new job, skills, etc.)
-2. **Update resume.html** - Reflect changes in HTML structure
-3. **Update README.md** - Update GitHub profile with new information
-4. **Regenerate PDF** - Run the Chrome command above
-5. **Commit & Push** - Save changes to GitHub
+1. **Edit resume-data.json** - Update your information (new job, skills, etc.)
+2. **Run generator** - `python3 generate.py`
+3. **Review changes** - Check generated files look correct
+4. **Commit & Push** - `git add . && git commit -m "Update resume" && git push`
 
-### Quick Updates:
+### Quick Styling Updates:
 
-For small changes (typos, formatting):
-1. Edit the relevant file directly (HTML, CSS, or README)
-2. Regenerate PDF if HTML/CSS changed
+For visual changes only (colors, fonts, spacing):
+1. Edit `style.css`
+2. Run `python3 generate.py` (to regenerate PDF with new styles)
+3. Commit & Push
+
+### Advanced Updates:
+
+To change how data is displayed:
+1. Edit `generate.py` templates
+2. Run `python3 generate.py` to test
 3. Commit & Push
 
 ## 🎨 Styling Notes
@@ -110,24 +150,37 @@ The CSS includes `@media print` and `@page` rules that control PDF generation:
 }
 ```
 
-## 🔗 Single Source of Truth
+## 🔗 True Single Source of Truth ✅
 
-All professional information should ultimately come from **resume-data.json**. Currently:
-- JSON data is manually synced with HTML and README
-- Future improvement: Generate HTML/README automatically from JSON
+**resume-data.json** is the ONLY file you need to edit. Everything else is automatically generated:
 
-## 📦 Dependencies
+- ✅ `resume.html` - Auto-generated from JSON
+- ✅ `README.md` - Auto-generated from JSON
+- ✅ `Munevver_Aslan_Resume.pdf` - Auto-generated from HTML
 
-- **Chrome/Chromium** - Required for PDF generation
-- No other external dependencies (pure HTML/CSS)
+**Benefits:**
+- Update once, propagate everywhere
+- No manual synchronization
+- No risk of inconsistency
+- Easy to maintain
 
-## 🚀 Quick Start for New Contributors
+## 📦 Requirements
 
-1. Clone the repository
-2. Make changes to desired files
-3. If HTML/CSS changed, regenerate PDF using Chrome command
-4. Commit and push changes
-5. PDF will be available at: `https://github.com/mnvvr/mnvvr/blob/main/Munevver_Aslan_Resume.pdf`
+- **Python 3** - Already installed on macOS/Linux
+- **Chrome/Chromium** - For PDF generation
+- No other dependencies needed!
+
+## 🚀 Quick Start for New Users
+
+1. Clone the repository: `git clone https://github.com/mnvvr/mnvvr.git`
+2. Edit `resume-data.json` with your changes
+3. Run `python3 generate.py`
+4. Review generated files
+5. Commit and push: `git add . && git commit -m "Update resume" && git push`
+
+**Your updated resume will be live at:**
+- GitHub Profile: `https://github.com/mnvvr`
+- PDF Download: `https://github.com/mnvvr/mnvvr/blob/main/Munevver_Aslan_Resume.pdf`
 
 ## 📄 License
 

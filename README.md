@@ -4,17 +4,17 @@
 
 *"Everything is design. Everything!"*
 
-I'm a product designer with an Industrial Design background, specializing in UI/UX for digital products and AI-powered design workflows. I'm passionate about building design systems from scratch, leading 0-to-1 product launches, and bridging the gap between design and development.
+Product Designer with Industrial Design background, specializing in UI/UX for digital products and AI-powered design workflows. Experienced in building design systems from scratch and leading 0-to-1 product launches. Expert in leveraging AI tools (Midjourney, Cursor) for rapid prototyping, development, and design-to-code workflows. Passionate about translating complex technical requirements into intuitive, accessible interfaces through close collaboration with engineering teams.
 
 ## 💼 Currently
 
-**UX UI Designer at [IGLUU](https://www.igluu.cz/)** *(Oct 2025 - Present)*
-Designing product interfaces for a Czech real estate platform, working on broker tools, rental application flows, and insurance partnerships. Collaborating closely with developers to ensure designs translate effectively across multiple breakpoints.
+**UX UI Designer at [IGLUU](https://www.igluu.cz/)** *(Oct. 2025 - Present)*
+Designing product interfaces for a Czech real estate platform, working on broker tools, rental application flows, and ČSOB bank insurance partnership
 
-**Freelance Digital Product Designer** *(Oct 2023 - Present)*
-- 🏆 Won branding award at Octant foundation's design competition for the Argot Collective Act Project
-- 🎮 Building Scrum Poker application from concept to deployment using AI-assisted development
-- 🎨 Creating Bitrick, an AI-generated visual narrative series exploring advanced Midjourney techniques
+**Digital Product Designer** *(Oct. 2023 - Present)*
+- 🏆 Won branding award at Octant foundation's design competition for the Argot Collective Act Project, creating comprehensive logo design and brand identity system selected from international submissions
+- 🎮 Building Scrum Poker application from concept to deployment using AI-assisted development (Cursor), demonstrating end-to-end product design and full-stack development capability
+- Delivering UI design, branding, and visual identity solutions for diverse clients, managing complete design lifecycle from discovery to final delivery
 
 ## 🎨 What I Do
 
@@ -25,22 +25,22 @@ Designing product interfaces for a Czech real estate platform, working on broker
 
 ## 🛠️ Tools & Skills
 
-**Design:** Figma (Advanced), Adobe Creative Suite, Midjourney, Cursor, Sketch, Adobe XD
-**UX/UI:** User Research, Information Architecture, Wireframing, Prototyping, Design Systems
+**Design:** Figma (Advanced), Adobe Creative Suite (Photoshop, Illustrator, Lightroom), Midjourney, Cursor, Sketch, Adobe XD
+**UX/UI:** User Experience Design, User Research, Information Architecture, User Flows, Journey Mapping, Persona Development
 **Methodology:** Agile/Scrum, AI-Powered Design Workflows, Branding, Visual Identity
-**Languages:** Turkish (Native), English (Professional)
+**Languages:** Turkish (Native), English (Professional Working Proficiency)
 
 ## 🌱 Exploring
 
+- AI-powered design workflows
+- Design systems and component libraries
+- Real estate platform UX at IGLUU
 - Web3 and decentralized application design
-- AI-powered design workflows and automation
-- Design-to-code tools and processes
-- Full-stack development with AI assistance
 
 ## 📫 Connect With Me
 
 - Portfolio: [munevver.netlify.app](https://munevver.netlify.app)
-- LinkedIn: [munevveraslan](https://www.linkedin.com/in/munevveraslan/)
+- LinkedIn: [munevveraslan](https://linkedin.com/in/munevveraslan)
 - X (Twitter): [@xoxmunevver](https://x.com/xoxmunevver)
 - Email: munevveraslan2@gmail.com
 
