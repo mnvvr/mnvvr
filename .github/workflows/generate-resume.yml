@@ -39,8 +39,9 @@ jobs:
       # Chromium respects print-specific CSS and paged media better than Weasyprint for HTML
       - name: Generate PDF from HTML
         run: |
-          # Remove old versioned PDFs to keep only the latest
-          rm -f Munevver_Aslan_Resume_*.pdf
+          # Remove old versioned PDFs from git (not just filesystem)
+          # The || true ensures command doesn't fail if no old PDFs exist
+          git rm -f Munevver_Aslan_Resume_*.pdf 2>/dev/null || true
 
           COMMIT_HASH=$(git rev-parse --short=7 HEAD)
           PDF_NAME="Munevver_Aslan_Resume_${COMMIT_HASH}.pdf"
