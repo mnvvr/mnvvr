@@ -80,8 +80,8 @@ jobs:
           # Clean up the temporary script
           rm generate-pdf.js
 
-      # Generate clean markdown README from HTML using Pandoc
-      # GitHub-flavored markdown renders beautifully without custom CSS
+      # Generate clean, concise README with summary + highlights from resume.html
+      # Extracts only key sections: summary, current role, and skills
       - name: Generate clean markdown README from HTML
         run: |
           # Create header section with links to versioned PDF
@@ -96,8 +96,40 @@ jobs:
 
           README_HEADER
 
-          # Convert HTML to markdown, stripping all div/span classes but keeping content
-          pandoc resume.html -f html -t gfm --wrap=none >> README.md
+          # Extract and convert summary section
+          echo "## About" >> README.md
+          sed -n '/<section class="section">/,/<\/section>/p' resume.html | \
+            grep -A 10 "summary-text" | \
+            pandoc -f html -t gfm --wrap=none | \
+            sed 's/<[^>]*>//g' >> README.md
+
+          # Extract and convert first experience item (current role)
+          echo -e "\n## Currently\n" >> README.md
+          sed -n '/<div class="experience-item">/,/<\/div>/p' resume.html | \
+            head -n 20 | \
+            pandoc -f html -t gfm --wrap=none | \
+            sed 's/<[^>]*>//g' >> README.md
+
+          # Extract and convert skills section
+          echo -e "\n## Skills\n" >> README.md
+          sed -n '/<section class="section">/,/<\/section>/p' resume.html | \
+            grep -A 100 "Ski.*lls" | \
+            head -n 30 | \
+            pandoc -f html -t gfm --wrap=none | \
+            sed 's/<[^>]*>//g' | \
+            grep -v "^Ski" >> README.md
+
+          # Add footer with link to full resume
+          cat >> README.md << 'README_FOOTER'
+
+          ---
+
+          📄 **[View Full Resume (PDF)](./${PDF_NAME})**
+
+          README_FOOTER
+
+          # Replace PDF_NAME variable in footer
+          sed -i "s/\${PDF_NAME}/${PDF_NAME}/g" README.md
 
       # Configure Git for automated commits
       - name: Configure Git
