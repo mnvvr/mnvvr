@@ -52,28 +52,28 @@ jobs:
           # Create symlink for latest version
           ln -sf "${PDF_NAME}" Munevver_Aslan_Resume.pdf
 
-      # Generate styled README.md with embedded HTML resume using readme.css
-      # GitHub sanitizes style tags, so we use minimal inline styles
-      - name: Generate styled README from HTML
+      # Generate clean markdown README from HTML using Pandoc
+      # GitHub-flavored markdown renders beautifully without custom CSS
+      - name: Generate clean markdown README from HTML
         run: |
-          cat > README.md << 'README_EOF'
-          <div align="center">
-
+          # Create header section with links
+          cat > README.md << 'README_HEADER'
           # Münevver Aslan
 
           **Digital Product Designer** | Lisbon, Portugal
 
-          📄 [Download PDF Resume](./Munevver_Aslan_Resume.pdf) | 💼 [LinkedIn](https://linkedin.com/in/munevveraslan) | 🌐 [Portfolio](https://munevver.netlify.app)
-
-          </div>
+          📄 [Download Resume (PDF)](./Munevver_Aslan_Resume.pdf) | 💼 [LinkedIn](https://linkedin.com/in/munevveraslan) | 🌐 [Portfolio](https://munevver.netlify.app) | ✉️ [Email](mailto:munevveraslan2@gmail.com)
 
           ---
 
-          README_EOF
+          README_HEADER
 
-          # Extract body content and apply minimal inline styles
-          sed -n '/<body>/,/<\/body>/p' resume.html | \
-          sed '1d;$d' >> README.md
+          # Convert HTML body to clean markdown using Pandoc
+          pandoc resume.html -f html -t gfm --wrap=none | \
+          # Remove the duplicate header section that's in the HTML
+          sed '/^#.*Münevver.*Aslan/,/^---$/d' | \
+          # Clean up empty lines
+          sed '/^$/N;/^\n$/D' >> README.md
 
       # Configure Git for automated commits
       - name: Configure Git
