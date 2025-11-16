@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #fff;
+}
+
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 35px 45px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e91e63;
+}
+
+.name {
+    font-size: 32px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 3px;
+    letter-spacing: -0.5px;
+}
+
+.name .last-name {
+    font-weight: 700;
+    color: #333;
+}
+
+.title {
+    font-size: 11px;
+    color: #e91e63;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+}
+
+.location {
+    color: #666;
+    font-size: 11px;
+    margin-bottom: 5px;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.contact-info a {
+    color: #34495e;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    color: #e91e63;
+}
+
+.quote {
+    font-style: italic;
+    color: #666;
+    font-size: 11px;
+    margin-top: 6px;
+    font-weight: 300;
+}
+
+.section {
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #e5e5e5;
+    display: block;
+    letter-spacing: -0.3px;
+}
+
+.section-title .highlight {
+    font-weight: 700;
+    color: #e91e63;
+}
+
+.summary-text {
+    font-size: 11px;
+    line-height: 1.65;
+    color: #333;
+    text-align: justify;
+    font-weight: 400;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: 135px 1fr;
+    gap: 6px 18px;
+    font-size: 11px;
+}
+
+.skill-category {
+    font-weight: 700;
+    color: #333;
+    text-align: right;
+}
+
+.skill-items {
+    color: #333;
+    font-weight: 400;
+}
+
+.experience-item {
+    margin-bottom: 12px;
+    page-break-inside: avoid;
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+
+.job-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.job-date {
+    font-size: 10px;
+    color: #e91e63;
+    font-style: italic;
+    white-space: nowrap;
+    margin-left: 20px;
+    font-weight: 400;
+}
+
+.company-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #e91e63;
+    margin-bottom: 1px;
+}
+
+.job-location {
+    font-size: 10px;
+    color: #666;
+    font-style: normal;
+    margin-bottom: 6px;
+    font-weight: 300;
+}
+
+.job-description {
+    margin-left: 0;
+    padding-left: 16px;
+}
+
+.job-description li {
+    margin-bottom: 4px;
+    font-size: 11px;
+    line-height: 1.55;
+    color: #333;
+    font-weight: 400;
+}
+
+.education-item {
+    margin-bottom: 10px;
+    page-break-inside: avoid;
+    orphans: 2;
+    widows: 2;
+}
+
+.education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.school-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.degree {
+    font-size: 11px;
+    color: #333;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+}
+
+.education-date {
+    font-size: 10px;
+    color: #e91e63;
+    font-style: italic;
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.education-location {
+    font-size: 10px;
+    color: #666;
+    font-style: normal;
+    font-weight: 300;
+}
+
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        padding: 28px 40px;
+    }
+    .experience-item {
+        page-break-inside: avoid;
+    }
+    .job-header {
+        page-break-after: avoid;
+    }
+    .job-description {
+        page-break-before: avoid;
+    }
+}
+
+@page {
+    margin: 0.35in;
+    size: A4;
+}
