@@ -80,56 +80,147 @@ jobs:
           # Clean up the temporary script
           rm generate-pdf.js
 
-      # Generate clean, concise README with summary + highlights from resume.html
-      # Extracts only key sections: summary, current role, and skills
+      # Generate clean, visually organized README from resume.html
+      # Creates properly formatted sections with clear visual hierarchy
       - name: Generate clean markdown README from HTML
         run: |
-          # Create header section with links to versioned PDF
-          cat > README.md << README_HEADER
-          # Münevver Aslan
+          # Create Python script for better HTML parsing and formatting
+          cat > generate_readme.py << 'PYSCRIPT'
+          from html.parser import HTMLParser
+          import sys
+          import os
+
+          class ResumeParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.current_section = None
+                  self.summary = ""
+                  self.skills = {}
+                  self.current_skill_category = None
+                  self.first_experience = {}
+                  self.in_first_exp = False
+                  self.exp_count = 0
+                  self.capture_text = False
+                  self.current_text = ""
+
+              def handle_starttag(self, tag, attrs):
+                  attrs_dict = dict(attrs)
+                  class_name = attrs_dict.get('class', '')
+
+                  if class_name == 'summary-text':
+                      self.current_section = 'summary'
+                      self.capture_text = True
+                  elif 'section-title' in class_name and 'Ski' in self.current_text:
+                      self.current_section = 'skills'
+                  elif class_name == 'skill-category':
+                      self.capture_text = True
+                      self.current_section = 'skill_category'
+                  elif class_name == 'skill-items':
+                      self.capture_text = True
+                      self.current_section = 'skill_items'
+                  elif class_name == 'experience-item' and self.exp_count == 0:
+                      self.in_first_exp = True
+                      self.exp_count += 1
+                  elif self.in_first_exp:
+                      if class_name == 'job-title':
+                          self.capture_text = True
+                          self.current_section = 'job_title'
+                      elif class_name == 'company-name':
+                          self.capture_text = True
+                          self.current_section = 'company'
+                      elif class_name == 'job-date':
+                          self.capture_text = True
+                          self.current_section = 'date'
+                      elif class_name == 'job-location':
+                          self.capture_text = True
+                          self.current_section = 'location'
+                      elif tag == 'li' and 'job-description' in str(attrs):
+                          self.capture_text = True
+                          self.current_section = 'description'
+
+              def handle_endtag(self, tag):
+                  if tag == 'div' and self.in_first_exp and 'experience-item' in str(tag):
+                      self.in_first_exp = False
+                  self.capture_text = False
+
+              def handle_data(self, data):
+                  if self.capture_text:
+                      text = data.strip()
+                      if not text:
+                          return
+
+                      if self.current_section == 'summary':
+                          self.summary = text
+                      elif self.current_section == 'skill_category':
+                          self.current_skill_category = text
+                      elif self.current_section == 'skill_items' and self.current_skill_category:
+                          self.skills[self.current_skill_category] = text
+                      elif self.current_section == 'job_title':
+                          self.first_experience['title'] = text
+                      elif self.current_section == 'company':
+                          self.first_experience['company'] = text
+                      elif self.current_section == 'date':
+                          self.first_experience['date'] = text
+                      elif self.current_section == 'location':
+                          self.first_experience['location'] = text
+                      elif self.current_section == 'description':
+                          if 'bullets' not in self.first_experience:
+                              self.first_experience['bullets'] = []
+                          self.first_experience['bullets'].append(text)
+                  self.current_text = data
+
+          # Parse HTML
+          with open('resume.html', 'r') as f:
+              html_content = f.read()
+
+          parser = ResumeParser()
+          parser.feed(html_content)
+
+          # Generate README
+          pdf_name = os.environ.get('PDF_NAME', 'Munevver_Aslan_Resume.pdf')
+
+          readme = f"""# Münevver Aslan
 
           **Digital Product Designer** | Lisbon, Portugal
 
-          📄 [Download Resume (PDF)](./${PDF_NAME}) | 💼 [LinkedIn](https://linkedin.com/in/munevveraslan) | 🌐 [Portfolio](https://munevver.netlify.app) | ✉️ [Email](mailto:munevveraslan2@gmail.com)
+          📄 [Download Resume (PDF)](./{pdf_name}) | 💼 [LinkedIn](https://linkedin.com/in/munevveraslan) | 🌐 [Portfolio](https://munevver.netlify.app) | ✉️ [Email](mailto:munevveraslan2@gmail.com)
 
           ---
 
-          README_HEADER
+          ## 👋 About
 
-          # Extract and convert summary section
-          echo "## About" >> README.md
-          sed -n '/<section class="section">/,/<\/section>/p' resume.html | \
-            grep -A 10 "summary-text" | \
-            pandoc -f html -t gfm --wrap=none | \
-            sed 's/<[^>]*>//g' >> README.md
+          {parser.summary}
 
-          # Extract and convert first experience item (current role)
-          echo -e "\n## Currently\n" >> README.md
-          sed -n '/<div class="experience-item">/,/<\/div>/p' resume.html | \
-            head -n 20 | \
-            pandoc -f html -t gfm --wrap=none | \
-            sed 's/<[^>]*>//g' >> README.md
+          ## 💼 Currently
 
-          # Extract and convert skills section
-          echo -e "\n## Skills\n" >> README.md
-          sed -n '/<section class="section">/,/<\/section>/p' resume.html | \
-            grep -A 100 "Ski.*lls" | \
-            head -n 30 | \
-            pandoc -f html -t gfm --wrap=none | \
-            sed 's/<[^>]*>//g' | \
-            grep -v "^Ski" >> README.md
+          **{parser.first_experience.get('title', '')}** at **{parser.first_experience.get('company', '')}**
+          *{parser.first_experience.get('date', '')} | {parser.first_experience.get('location', '')}*
 
-          # Add footer with link to full resume
-          cat >> README.md << 'README_FOOTER'
+          """
 
+          if 'bullets' in parser.first_experience:
+              for bullet in parser.first_experience['bullets'][:3]:  # First 3 bullets only
+                  readme += f"- {bullet}\n"
+
+          readme += "\n## 🎨 Skills\n\n"
+          for category, items in parser.skills.items():
+              readme += f"- **{category}:** {items}\n"
+
+          readme += f"""
           ---
 
-          📄 **[View Full Resume (PDF)](./${PDF_NAME})**
+          📄 **[View Full Resume (PDF)](./{pdf_name})**
+          """
 
-          README_FOOTER
+          with open('README.md', 'w') as f:
+              f.write(readme)
+          PYSCRIPT
 
-          # Replace PDF_NAME variable in footer
-          sed -i "s/\${PDF_NAME}/${PDF_NAME}/g" README.md
+          # Run the Python script
+          python3 generate_readme.py
+
+          # Clean up
+          rm generate_readme.py
 
       # Configure Git for automated commits
       - name: Configure Git
