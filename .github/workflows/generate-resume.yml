@@ -44,11 +44,37 @@ jobs:
             --print-to-pdf-no-header \
             resume.html
 
-      # Generate Markdown from HTML for GitHub README
-      # This keeps README.md in sync with resume.html content
-      - name: Generate Markdown from HTML
+      # Generate styled README.md with embedded HTML resume
+      # GitHub supports HTML in markdown, preserving visual styling
+      - name: Generate styled README from HTML
         run: |
-          pandoc resume.html -f html -t gfm -o README.md
+          cat > README.md << 'README_EOF'
+          <div align="center">
+
+          # Münevver Aslan
+
+          **Digital Product Designer** | Lisbon, Portugal
+
+          📄 [Download PDF Resume](./Munevver_Aslan_Resume.pdf) | 💼 [LinkedIn](https://linkedin.com/in/munevveraslan) | 🌐 [Portfolio](https://munevver.netlify.app)
+
+          </div>
+
+          ---
+
+          README_EOF
+
+          # Extract the body content and embed with style tag
+          sed -n '/<body>/,/<\/body>/p' resume.html | \
+          sed '1d;$d' | \
+          sed 's|<link rel="stylesheet" href="style.css">||' >> README.md
+
+          # Prepend inline styles from style.css
+          echo "<style>" > temp_readme.md
+          cat style.css >> temp_readme.md
+          echo "</style>" >> temp_readme.md
+          echo "" >> temp_readme.md
+          cat README.md >> temp_readme.md
+          mv temp_readme.md README.md
 
       # Configure Git for automated commits
       - name: Configure Git
