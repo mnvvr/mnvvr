@@ -2,7 +2,7 @@
 
 **Digital Product Designer** | Lisbon, Portugal
 
-📄 [Download Resume (PDF)](./Munevver_Aslan_Resume_2d081f2.pdf) | 💼 [LinkedIn](https://linkedin.com/in/munevveraslan) | 🌐 [Portfolio](https://munevver.netlify.app) | ✉️ [Email](mailto:munevveraslan2@gmail.com)
+📄 [Download Resume (PDF)](./Munevver_Aslan_Resume_4e5eb8d.pdf) | 💼 [LinkedIn](https://linkedin.com/in/munevveraslan) | 🌐 [Portfolio](https://munevver.netlify.app) | ✉️ [Email](mailto:munevveraslan2@gmail.com)
 
 ---
 
@@ -12,9 +12,12 @@ Product Designer with Industrial Design background, specializing in UI/UX for di
 
 ## 💼 Currently
 
-**UX UI Designer** at ****
-* | *
+**UX UI Designer** at **IGLUU**
+*Oct. 2025 - Present | Remote*
 
+- Designing product interfaces for a Czech real estate platform, working on broker tools, rental application flows, and ČSOB bank insurance partnership
+- Iterating on designs through detailed feedback cycles with Product Owners and senior designers
+- Working within established design system while identifying and proposing improvements to responsive design approaches
 
 ## 🎨 Skills
 
@@ -26,4 +29,4 @@ Product Designer with Industrial Design background, specializing in UI/UX for di
 
 ---
 
-📄 **[View Full Resume (PDF)](./Munevver_Aslan_Resume_2d081f2.pdf)**
+📄 **[View Full Resume (PDF)](./Munevver_Aslan_Resume_4e5eb8d.pdf)**
