@@ -74,8 +74,8 @@ jobs:
           # Run the PDF generation
           node generate-pdf.js "${PDF_NAME}"
 
-          # Create symlink for latest version
-          ln -sf "${PDF_NAME}" Munevver_Aslan_Resume.pdf
+          # Copy to create stable filename (not symlink, so GitHub serves it correctly)
+          cp "${PDF_NAME}" Munevver_Aslan_Resume.pdf
 
           # Clean up the temporary script
           rm generate-pdf.js
