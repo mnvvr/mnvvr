@@ -130,51 +130,42 @@ body {
     font-weight: 400;
 }
 
-.experience-item {
+.experience-entry {
     margin-bottom: 12px;
     page-break-inside: avoid;
 }
 
-.job-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+.position-summary {
     margin-bottom: 5px;
+    font-size: 11px;
+    line-height: 1.6;
 }
 
-.job-title {
+.position-title {
     font-size: 12px;
     font-weight: 700;
     color: #333;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 2px;
 }
 
-.job-date {
-    font-size: 10px;
-    color: #e91e63;
-    font-style: italic;
-    white-space: nowrap;
-    margin-left: 20px;
-    font-weight: 400;
-}
-
-.company-name {
+.employer-name {
     font-size: 12px;
     font-weight: 700;
     color: #e91e63;
-    margin-bottom: 1px;
-    margin-top: 0;
 }
 
-.job-location {
+.work-location {
     font-size: 10px;
     color: #666;
-    font-style: normal;
-    margin-bottom: 6px;
-    margin-top: 0;
     font-weight: 300;
+}
+
+.work-period {
+    font-size: 10px;
+    color: #e91e63;
+    font-style: italic;
+    font-weight: 400;
 }
 
 .job-description {
@@ -190,50 +181,43 @@ body {
     font-weight: 400;
 }
 
-.education-item {
+.education-entry {
     margin-bottom: 10px;
     page-break-inside: avoid;
     orphans: 2;
     widows: 2;
 }
 
-.education-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+.school-summary {
+    font-size: 11px;
+    line-height: 1.6;
 }
 
-.school-name {
+.school-title {
     font-size: 12px;
     font-weight: 700;
     color: #333;
-    margin-bottom: 2px;
-    margin-top: 0;
 }
 
-.degree {
+.program-name {
     font-size: 11px;
     color: #333;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.2px;
-    margin: 0;
 }
 
-.education-date {
+.campus-location {
+    font-size: 10px;
+    color: #666;
+    font-weight: 300;
+}
+
+.study-period {
     font-size: 10px;
     color: #e91e63;
     font-style: italic;
-    white-space: nowrap;
     font-weight: 400;
-}
-
-.education-location {
-    font-size: 10px;
-    color: #666;
-    font-style: normal;
-    font-weight: 300;
-    margin: 0;
 }
 
 @media print {
@@ -244,10 +228,10 @@ body {
     .resume-content {
         padding: 28px 40px;
     }
-    .experience-item {
+    .experience-entry {
         page-break-inside: avoid;
     }
-    .job-header {
+    .position-summary {
         page-break-after: avoid;
     }
     .job-description {

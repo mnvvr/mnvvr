@@ -47,21 +47,17 @@
             <h2 class="section-title"><span class="highlight">Exp</span>erience</h2>
 
             {% for job in experience %}
-            <div class="experience-item">
-                <div class="job-header">
-                    <div>
-                        <h3 class="job-title">{{ job.title }}</h3>
-                        <p class="company-name">{{ job.company }}</p>
-                        <p class="job-location">{{ job.location }}</p>
-                    </div>
-                    <time class="job-date" datetime="{{ job.date }}">{{ job.date }}</time>
-                </div>
+            <article class="experience-entry">
+                <p class="position-summary">
+                    <strong class="position-title">{{ job.title }}</strong> at <strong class="employer-name">{{ job.company }}</strong><br>
+                    <span class="work-location">{{ job.location }}</span> • <time class="work-period" datetime="{{ job.date }}">{{ job.date }}</time>
+                </p>
                 <ul class="job-description">
                     {% for bullet in job.bullets %}
                     <li>{{ bullet }}</li>
                     {% endfor %}
                 </ul>
-            </div>
+            </article>
 
             {% endfor %}
         </section>
@@ -69,16 +65,13 @@
         <section class="section">
             <h2 class="section-title"><span class="highlight">Edu</span>cation</h2>
             {% for edu in education %}
-            <div class="education-item">
-                <div class="education-header">
-                    <div>
-                        <h3 class="school-name">{{ edu.school }}</h3>
-                        <p class="degree">{{ edu.degree }}</p>
-                        <p class="education-location">{{ edu.location }}</p>
-                    </div>
-                    <time class="education-date" datetime="{{ edu.date }}">{{ edu.date }}</time>
-                </div>
-            </div>
+            <article class="education-entry">
+                <p class="school-summary">
+                    <strong class="school-title">{{ edu.school }}</strong><br>
+                    <span class="program-name">{{ edu.degree }}</span><br>
+                    <span class="campus-location">{{ edu.location }}</span> • <time class="study-period" datetime="{{ edu.date }}">{{ edu.date }}</time>
+                </p>
+            </article>
 
             {% endfor %}
         </section>
